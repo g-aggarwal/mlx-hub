@@ -6,6 +6,5 @@ mlx-community/aya-23-8B-4bit
 mlx-community/c4ai-command-r-v01-4bit
 mlx-community/Qwen2-7B-Instruct-4bit
 mlx-community/Phi-3-mini-4k-instruct-4bit
-mlx-community/Vecteus-v1-4bit
 mlx-community/starcoder2-7b-4bit
 mlx-community/TinyDolphin-2.8-1.1b-4bit-mlx
