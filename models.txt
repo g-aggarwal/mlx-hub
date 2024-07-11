@@ -1,0 +1,10 @@
+mlx-community/Meta-Llama-3-8B-Instruct-4bit
+mlx-community/Mistral-7B-Instruct-v0.3-4bit
+mlx-community/gemma-2-9b-it-4bit
+mlx-community/stable-code-instruct-3b-4bit
+mlx-community/aya-23-8B-4bit
+mlx-community/c4ai-command-r-v01-4bit
+mlx-community/Qwen2-7B-Instruct-4bit
+mlx-community/Phi-3-mini-4k-instruct-4bit
+mlx-community/Vecteus-v1-4bit
+mlx-community/starcoder2-7b-4bit

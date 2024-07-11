@@ -1,0 +1,3 @@
+requests
+PyQt5
+mlx_lm
