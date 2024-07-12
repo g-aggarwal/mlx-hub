@@ -45,6 +45,5 @@ def main():
         print("Invalid option.")
         print("Use --help, --suggest, --scan, --find <model_name>, --download <model_name>, or --delete <model_name>")
 
-
 if __name__ == "__main__":
     main()
