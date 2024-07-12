@@ -1,6 +1,28 @@
 from huggingface_hub import scan_cache_dir, snapshot_download, HfApi, ModelFilter
+from collections import deque
 
 SUGGESTED_MODELS_FILE_PATH = 'suggested_models.txt'
+SEARCH_LIMIT = 50
+SEARCH_LIBRARY = 'mlx'
+SEARCH_TASK = "text-generation"
+SEARCH_AUTHOR = "mlx-community"
+SEARCH_FULL = False
+
+def search(search_term):
+    """Searches for model repositories using a string that contain complete or partial names for models on the Hub."""
+    hf_api = HfApi()
+    
+    # List all models with a specific filter
+    models = hf_api.list_models(
+        search=search_term, 
+        library=SEARCH_LIBRARY, 
+        # limit=SEARCH_LIMIT,
+        # task=SEARCH_TASK,
+        full=SEARCH_FULL,
+        author=SEARCH_AUTHOR
+    )
+    
+    return list(models)
 
 def suggest():
     """Reads and returns suggested models from a file."""
