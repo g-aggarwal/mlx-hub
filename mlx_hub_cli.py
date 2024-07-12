@@ -1,12 +1,13 @@
 import argparse
-from mlx_hub import suggest, find, scan, download, delete
-from cli_utils import print_string_list, print_model_list
+from mlx_hub import suggest, find, search, scan, download, delete
+from cli_utils import print_string_list, print_repo_list, print_model_list
 
 def main():
     parser = argparse.ArgumentParser(description='MLX Model Manager')
     parser.add_argument('--suggest', action='store_true', help='Suggest some available models to download')
     parser.add_argument('--scan', action='store_true', help='Scan for downloaded models')
     parser.add_argument('--find', type=str, metavar='model_id', help='Check for a specific model')
+    parser.add_argument('--search', type=str, metavar='searct_term', help='Search for models using a string that contain complete or partial names for models on the Hub,')
     parser.add_argument('--download', type=str, metavar='model_id', help='Download a specific model')
     parser.add_argument('--delete', type=str, metavar='model_id', help='Delete a specific model')
     
@@ -17,20 +18,26 @@ def main():
         print_string_list(suggest())
         
     elif args.scan:
-        print("Downloaded models")
-        print_model_list(scan())
+        repo_list = scan()
+        print(f"Downloaded models: {len(repo_list)}")
+        print_repo_list(repo_list)
         
     elif args.find:
         print("Checking for model: " + args.find)
         if find(args.find) is not None:
-            print(f"Model found.")
+            print(f"Model found")
         else:
-            print(f"Model not found.")
+            print(f"Model not found")
+            
+    elif args.search:
+        models_list = search(args.search)
+        print(f"Models found: {len(models_list)}")
+        print_model_list(models_list)
             
     elif args.download:
         print("Downloding model: " + args.download)
         if download(args.download):
-            print(f"Model 'downloaded successfully.")
+            print(f"Model downloaded successfully.")
         else:
             print(f"Model not found.")
             
@@ -44,7 +51,6 @@ def main():
     else:
         print("Invalid option.")
         print("Use --help, --suggest, --scan, --find <model_name>, --download <model_name>, or --delete <model_name>")
-
 
 if __name__ == "__main__":
     main()
