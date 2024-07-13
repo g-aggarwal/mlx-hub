@@ -1,27 +1,34 @@
-from huggingface_hub import scan_cache_dir, snapshot_download, HfApi, ModelFilter
-from collections import deque
+from huggingface_hub import HfApi, scan_cache_dir, snapshot_download
+from enum import Enum
 
 SUGGESTED_MODELS_FILE_PATH = 'suggested_models.txt'
-SEARCH_LIMIT = 50
-SEARCH_LIBRARY = 'mlx'
-SEARCH_TASK = "text-generation"
-SEARCH_AUTHOR = "mlx-community"
-SEARCH_FULL = False
 
-def search(search_term):
+SEARCH_AUTHOR = "mlx-community"
+SEARCH_LIBRARY = 'mlx'
+SEARCH_TASK = "text-generation" # Unused
+SEARCH_FULL = False
+SEARCH_LIMIT = 25
+
+class SortBy(Enum):
+    LIKES = "likes"
+    DOWNLOADS = "downloads"
+    CREATED = "created"
+    LAST_MODIFIED = "last_modified"
+
+def search(search_term, search_limit=SEARCH_LIMIT, sort_by=SortBy.DOWNLOADS):
     """Searches for model repositories using a string that contain complete or partial names for models on the Hub."""
     hf_api = HfApi()
     
-    # List all models with a specific filter
+    # List all models with the specified filter
     models = hf_api.list_models(
         search=search_term, 
         library=SEARCH_LIBRARY, 
-        # limit=SEARCH_LIMIT,
-        # task=SEARCH_TASK,
+        author=SEARCH_AUTHOR,
+        sort=sort_by.value,
         full=SEARCH_FULL,
-        author=SEARCH_AUTHOR
+        limit=search_limit
     )
-    
+
     return list(models)
 
 def suggest():
@@ -32,9 +39,7 @@ def suggest():
             # Strip newline characters from each line
             lines = [line.strip() for line in lines]
         return lines
-    except FileNotFoundError:
-        print(f"The file at path {SUGGESTED_MODELS_FILE_PATH} was not found.")
-    except IOError:
+    except (FileNotFoundError, IOError):
         print(f"An error occurred while reading the file at path {SUGGESTED_MODELS_FILE_PATH}.")
     return []
 
@@ -55,7 +60,7 @@ def download(repo_id):
     """Downloads a repository snapshot by its ID."""
     try:
         repo_path = snapshot_download(repo_id)
-        return repo_path is not None
+        return True if repo_path else False
     except Exception as e:
         print(f"An error occurred while downloading the repository {repo_id}: {e}")
         return False
