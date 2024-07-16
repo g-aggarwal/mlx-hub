@@ -1,7 +1,6 @@
 import argparse
 import mlx_hub
 from enum import Enum
-from cli_utils import print_string_list, print_repo_list, print_model_list
 
 
 class Action(Enum):
@@ -30,7 +29,12 @@ def print_action_help():
     print("Available Actions:")
     for action in Action:
         if action.interactive:
-            print(f"    {action.value:<8} {action.parameter:<12} {action.description}")
+            print(f"    {action.value:<10} {action.parameter:<10} {action.description}")
+
+
+def print_string_list(string_list):
+    for item in string_list:
+        print(item)
 
 
 def execute_action(action, parameters=None):
@@ -46,7 +50,7 @@ def execute_action(action, parameters=None):
             print("No downloaded models found.")
         else:
             print(f"{len(repo_list)} downloaded models: ")
-        print_repo_list(repo_list)
+        print_string_list(repo_list)
 
     elif action == Action.SEARCH:
         if parameters:
@@ -58,7 +62,7 @@ def execute_action(action, parameters=None):
                 print(f"Showing top {mlx_hub.SEARCH_LIMIT} results:")
             else:
                 print(f"{count} models found:")
-            print_model_list(models_list)
+            print_string_list(models_list)
         else:
             print("Please provide a search phrase.")
 
