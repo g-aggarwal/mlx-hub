@@ -2,7 +2,7 @@ from enum import Enum
 from typing import List
 from huggingface_hub import HfApi, scan_cache_dir, snapshot_download
 
-SUGGESTED_MODELS_FILE_PATH = 'suggested_models.txt'
+SUGGESTED_MODELS_FILE_PATH = '../suggested_models.txt'
 SEARCH_AUTHOR = "mlx-community"
 SEARCH_LIBRARY = 'mlx'
 SEARCH_FULL = False
