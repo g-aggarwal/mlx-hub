@@ -3,4 +3,4 @@
 __pycache__/
 .env
 *.code-workspace
-.idea
+.idea/
