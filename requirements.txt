@@ -1,3 +1,1 @@
-requests
-mlx_lm
-huggingface-hub~=0.23.4
+huggingface-hub>=0.23.4,<1.0.0
