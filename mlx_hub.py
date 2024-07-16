@@ -1,5 +1,8 @@
+from typing import List
 from huggingface_hub import HfApi, scan_cache_dir, snapshot_download
 from enum import Enum
+
+from huggingface_hub.hf_api import ModelInfo
 
 SUGGESTED_MODELS_FILE_PATH = 'suggested_models.txt'
 
@@ -16,7 +19,7 @@ class SortBy(Enum):
     LAST_MODIFIED = "last_modified"
 
 
-def search(search_term, search_limit=SEARCH_LIMIT, sort_by=SortBy.DOWNLOADS):
+def search(search_term, search_limit=SEARCH_LIMIT, sort_by=SortBy.DOWNLOADS) -> List[str]:
     """Searches for model repositories using a string that contain complete or partial names for models on the Hub."""
     hf_api = HfApi()
     # List all models with the specified filter
@@ -27,7 +30,8 @@ def search(search_term, search_limit=SEARCH_LIMIT, sort_by=SortBy.DOWNLOADS):
         full=SEARCH_FULL,
         limit=search_limit
     )
-    return list(models)
+    models_list = list(models)
+    return [model.id for model in models_list]
 
 
 def suggest():
@@ -46,16 +50,8 @@ def suggest():
 def scan():
     """Scans the Hugging Face cache directory and returns a list of repositories."""
     hf_cache_info = scan_cache_dir()
-    return hf_cache_info.repos
-
-
-def find(repo_id):
-    """Finds and returns a repository by its ID."""
-    hf_cache_info = scan_cache_dir()
-    for repo in hf_cache_info.repos:
-        if repo_id == repo.repo_id:
-            return repo
-    return None
+    models_list = list(hf_cache_info.repos)
+    return [model.repo_id for model in models_list]
 
 
 def download(repo_id):
@@ -70,15 +66,16 @@ def download(repo_id):
 
 def delete(repo_id):
     """Deletes a repository by its ID."""
-    repo = find(repo_id)
-    if repo is not None:
-        try:
-            hf_cache_info = scan_cache_dir()
-            for revision in sorted(repo.revisions, key=lambda revision_hash: revision_hash.commit_hash):
-                strategy = hf_cache_info.delete_revisions(revision.commit_hash)
-                strategy.execute()
-            return True
-        except Exception as e:
-            print(f"An error occurred while deleting the repository {repo_id}: {e}")
-            return False
+    hf_cache_info = scan_cache_dir()
+    for repo in hf_cache_info.repos:
+        if repo_id == repo.repo_id:
+            try:
+                hf_cache_info = scan_cache_dir()
+                for revision in sorted(repo.revisions, key=lambda revision_hash: revision_hash.commit_hash):
+                    strategy = hf_cache_info.delete_revisions(revision.commit_hash)
+                    strategy.execute()
+                return True
+            except Exception as e:
+                print(f"An error occurred while deleting the repository {repo_id}: {e}")
+                return False
     return False
