@@ -10,7 +10,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'mlx-hub-cli=mlx-hub-cli:main',
+            'mlx-hub-cli=mlx_hub_cli:main',
         ],
     },
     author='Gaurav Aggarwal',
