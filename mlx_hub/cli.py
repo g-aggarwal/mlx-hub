@@ -1,5 +1,5 @@
 import argparse
-import mlx_hub
+import mlx_hub.core
 from enum import Enum
 
 
