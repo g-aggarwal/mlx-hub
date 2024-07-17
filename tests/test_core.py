@@ -63,12 +63,12 @@ class TestMLXHub(unittest.TestCase):
             self.assertEqual(len(repo_id.split("/")), 2)
 
     def test_download(self):
-        # scan_result_before_download = mlx_hub.scan()
-        #
-        # if TEST_MODEL in scan_result_before_download:
-        #     delete_result = mlx_hub.delete(TEST_MODEL)
-        #     self.assertEqual(delete_result, True)
-        #     self.assertNotIn(TEST_MODEL, mlx_hub.scan())
+        scan_result_before_download = mlx_hub.scan()
+
+        if TEST_MODEL in scan_result_before_download:
+            delete_result = mlx_hub.delete(TEST_MODEL)
+            self.assertEqual(delete_result, True)
+            self.assertNotIn(TEST_MODEL, mlx_hub.scan())
 
         download_result = mlx_hub.download(TEST_MODEL)
         self.assertTrue(download_result)
