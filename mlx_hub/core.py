@@ -1,6 +1,6 @@
 from enum import Enum
 from typing import List
-from huggingface_hub import HfApi, scan_cache_dir, snapshot_download
+from huggingface_hub import HfApi, scan_cache_dir, snapshot_download, CacheNotFound
 
 SUGGESTED_MODELS_FILE_PATH = '../suggested_models.txt'
 SEARCH_AUTHOR = "mlx-community"
@@ -43,8 +43,12 @@ def suggest() -> List[str]:
 
 def scan() -> List[str]:
     """Scans the Hugging Face cache directory and returns a list of repositories."""
-    hf_cache_info = scan_cache_dir()
-    return [model.repo_id for model in hf_cache_info.repos]
+    try:
+        hf_cache_info = scan_cache_dir()
+        return [model.repo_id for model in hf_cache_info.repos]
+    except CacheNotFound as e:
+        print(f"An error occurred while scanning the cache: {e}")
+        return []
 
 
 def download(repo_id: str) -> bool:
