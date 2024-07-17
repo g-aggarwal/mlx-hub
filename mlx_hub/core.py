@@ -1,8 +1,10 @@
 from enum import Enum
 from typing import List
+from importlib.resources import files, as_file
 from huggingface_hub import HfApi, scan_cache_dir, snapshot_download, CacheNotFound
 
-SUGGESTED_MODELS_FILE_PATH = '../suggested_models.txt'
+SUGGESTED_MODELS_FILE = 'suggested_models.txt'
+PACKAGE_PATH = 'mlx_hub'
 SEARCH_AUTHOR = "mlx-community"
 SEARCH_LIBRARY = 'mlx'
 SEARCH_FULL = False
@@ -33,11 +35,11 @@ def search(search_term, search_limit=SEARCH_LIMIT, sort_by=SortBy.DOWNLOADS) -> 
 def suggest() -> List[str]:
     """Reads and returns suggested models from a file."""
     try:
-        with open(SUGGESTED_MODELS_FILE_PATH, 'r') as file:
+        with files(PACKAGE_PATH).joinpath(SUGGESTED_MODELS_FILE).open() as file:
             lines = file.readlines()
             return [line.strip() for line in lines]
     except (FileNotFoundError, IOError):
-        print(f"An error occurred while reading the file at path {SUGGESTED_MODELS_FILE_PATH}.")
+        print(f"An error occurred while reading the file at path {SUGGESTED_MODELS_FILE}.")
         return []
 
 
