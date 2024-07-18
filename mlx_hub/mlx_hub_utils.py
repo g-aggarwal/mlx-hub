@@ -1,4 +1,4 @@
-from importlib.resources import files, as_file
+from importlib.resources import files
 from typing import List
 
 PACKAGE_PATH = 'mlx_hub'

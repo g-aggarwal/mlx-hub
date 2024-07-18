@@ -1,6 +1,6 @@
 import argparse
 import mlx_hub.core
-import mlx_hub.mlx_hub_utils as mlx_hub_utils
+import mlx_hub.mlx_hub_utils as utils
 
 from enum import Enum
 
@@ -30,7 +30,7 @@ class Action(Enum):
 
 
 def print_action_login():
-    mlx_hub_utils.print_packaged_file(LOGIN_HELP_FILE)
+    utils.print_packaged_file(LOGIN_HELP_FILE)
 
 
 def print_action_help():
