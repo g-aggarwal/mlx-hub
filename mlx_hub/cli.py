@@ -1,18 +1,23 @@
 import argparse
 import mlx_hub.core
+import mlx_hub.mlx_hub_utils as utils
+
 from enum import Enum
+
+LOGIN_HELP_FILE = "login_help.txt"
 
 
 class Action(Enum):
-    HELP = ("help", "", "Show this help message")
-    START = ("start", "", "Start Interactive Mode", False)
-    SCAN = ("scan", "", "Scan for downloaded MLX models")
+    LOGIN = ("login", None, "Add Hugging Face access token", False)
+    START = ("start", None, "Start Interactive Mode", False)
+    SCAN = ("scan", None, "Scan for downloaded MLX models")
     SEARCH = ("search", "phrase", "Search for MLX models using a search phrase")
-    SUGGEST = ("suggest", "", "Suggest MLX models to download")
+    SUGGEST = ("suggest", None, "Suggest MLX models to download")
     DOWNLOAD = ("download", "repo_id", "Download a specific model")
     DELETE = ("delete", "repo_id", "Delete a specific model")
-    EXIT = ("exit", "", "Exit Interactive Mode")
-    INVALID = ("invalid", "", "Invalid action", False)
+    EXIT = ("exit", None, "Exit Interactive Mode")
+    HELP = ("help", None, "Show this help message")
+    INVALID = ("invalid", None, "Invalid action", False)
 
     def __new__(cls, value: str, parameter: str, description: str, is_interactive: bool = True):
         obj = object.__new__(cls)
@@ -22,6 +27,10 @@ class Action(Enum):
         obj.description = description
         obj.interactive = is_interactive
         return obj
+
+
+def print_action_login():
+    utils.print_packaged_file(LOGIN_HELP_FILE)
 
 
 def print_action_help():
@@ -37,14 +46,11 @@ def print_string_list(string_list):
         print(item)
 
 
-def execute_action(action, parameters=None):
+def execute_action(action, parameter=None):
     """Executes the given action with optional parameters."""
     print()
 
-    if action == Action.HELP:
-        print_action_help()
-
-    elif action == Action.SCAN:
+    if action == Action.SCAN:
         repo_list = mlx_hub.scan()
         if len(repo_list) == 0:
             print("No downloaded models found.")
@@ -53,8 +59,8 @@ def execute_action(action, parameters=None):
         print_string_list(repo_list)
 
     elif action == Action.SEARCH:
-        if parameters:
-            models_list = mlx_hub.search(parameters)
+        if parameter:
+            models_list = mlx_hub.search(parameter)
             count = len(models_list)
             if count == 0:
                 print("No models found.")
@@ -71,9 +77,9 @@ def execute_action(action, parameters=None):
         print_string_list(mlx_hub.suggest())
 
     elif action == Action.DOWNLOAD:
-        if parameters:
-            print(f"Downloading model: {parameters}")
-            if mlx_hub.download(parameters):
+        if parameter:
+            print(f"Downloading model: {parameter}")
+            if mlx_hub.download(parameter):
                 print("Model downloaded successfully.")
             else:
                 print("Model not found.")
@@ -81,9 +87,9 @@ def execute_action(action, parameters=None):
             print("Please provide a Repo ID.")
 
     elif action == Action.DELETE:
-        if parameters:
-            print(f"Deleting model: {parameters}")
-            if mlx_hub.delete(parameters):
+        if parameter:
+            print(f"Deleting model: {parameter}")
+            if mlx_hub.delete(parameter):
                 print("Model deleted successfully.")
             else:
                 print("Model not found.")
@@ -98,6 +104,12 @@ def execute_action(action, parameters=None):
     elif action == Action.EXIT:
         print("Goodbye!")
         return False
+
+    elif action == Action.LOGIN:
+        print_action_login()
+
+    elif action == Action.HELP:
+        print_action_help()
 
     else:
         print("Invalid action.")
@@ -171,7 +183,9 @@ def main():
     args = parser.parse_args()
 
     try:
-        if args.start:
+        if not mlx_hub.has_token():
+            execute_action(Action.LOGIN)
+        elif args.start:
             execute_action(Action.START)
         elif args.scan:
             execute_action(Action.SCAN)
@@ -184,7 +198,8 @@ def main():
         elif args.delete:
             execute_action(Action.DELETE, args.delete)
         else:
-            execute_action(Action.HELP)
+            parser.print_help()
+
     except Exception as e:
         print(f"An error occurred: {e}")
 
