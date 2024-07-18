@@ -1,8 +1,10 @@
+# Copyright (c) 2024 Gaurav Aggarwal
+
 from enum import Enum
 from typing import List
 from huggingface_hub import HfApi, get_token, scan_cache_dir, snapshot_download, CacheNotFound
 from huggingface_hub.errors import LocalTokenNotFoundError
-import mlx_hub.mlx_hub_utils
+import mlx_hub.mlx_hub_utils as utils
 
 SUGGESTED_MODELS_FILE = 'suggested_models.txt'
 
@@ -41,7 +43,7 @@ def search(search_term, search_limit=SEARCH_LIMIT, sort_by=SortBy.DOWNLOADS) -> 
 
 def suggest() -> List[str]:
     """Reads and returns suggested models from a file."""
-    return read_packaged_file(SUGGESTED_MODELS_FILE)
+    return utils.read_packaged_file(SUGGESTED_MODELS_FILE)
 
 
 def scan() -> List[str]:
@@ -49,7 +51,7 @@ def scan() -> List[str]:
     try:
         hf_cache_info = scan_cache_dir()
         return [model.repo_id for model in hf_cache_info.repos]
-    except CacheNotFound as e:
+    except CacheNotFound:
         return []
 
 

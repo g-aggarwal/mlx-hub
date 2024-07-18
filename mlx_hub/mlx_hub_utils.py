@@ -1,3 +1,5 @@
+# Copyright (c) 2024 Gaurav Aggarwal
+
 from importlib.resources import files
 from typing import List
 

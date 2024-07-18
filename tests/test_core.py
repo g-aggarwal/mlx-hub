@@ -1,3 +1,5 @@
+# Copyright (c) 2024 Gaurav Aggarwal
+
 import unittest
 import mlx_hub
 
