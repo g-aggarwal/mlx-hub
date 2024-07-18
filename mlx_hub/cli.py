@@ -1,3 +1,5 @@
+# Copyright (c) 2024 Gaurav Aggarwal
+
 import argparse
 import mlx_hub.core
 import mlx_hub.mlx_hub_utils as utils
