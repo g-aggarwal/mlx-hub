@@ -7,7 +7,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     package_data={
-        'mlx_hub': ['suggested_models.txt']
+        'mlx_hub': ['suggested_models.txt', 'login_help.txt'],
     },
     install_requires=[
         'huggingface-hub>=0.23.4',

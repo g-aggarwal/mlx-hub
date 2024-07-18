@@ -1,14 +1,14 @@
 from enum import Enum
 from typing import List
-from importlib.resources import files, as_file
-from huggingface_hub import HfApi, scan_cache_dir, snapshot_download, CacheNotFound
+from huggingface_hub import HfApi, get_token, scan_cache_dir, snapshot_download, CacheNotFound
+from huggingface_hub.errors import LocalTokenNotFoundError
+import mlx_hub.mlx_hub_utils
 
 SUGGESTED_MODELS_FILE = 'suggested_models.txt'
-PACKAGE_PATH = 'mlx_hub'
-SEARCH_AUTHOR = "mlx-community"
+
 SEARCH_LIBRARY = 'mlx'
 SEARCH_FULL = False
-SEARCH_LIMIT = 25
+SEARCH_LIMIT = 10
 
 
 class SortBy(Enum):
@@ -18,13 +18,20 @@ class SortBy(Enum):
     LAST_MODIFIED = "last_modified"
 
 
+def has_token() -> bool:
+    """Checks if there is a Hugging Face token."""
+    try:
+        return get_token() is not None
+    except LocalTokenNotFoundError:
+        return False
+
+
 def search(search_term, search_limit=SEARCH_LIMIT, sort_by=SortBy.DOWNLOADS) -> List[str]:
     """Searches for model repositories using a string that contain complete or partial names for models on the Hub."""
     hf_api = HfApi()
     models = hf_api.list_models(
         search=search_term,
         library=SEARCH_LIBRARY,
-        author=SEARCH_AUTHOR,
         sort=sort_by.value,
         full=SEARCH_FULL,
         limit=search_limit
@@ -34,13 +41,7 @@ def search(search_term, search_limit=SEARCH_LIMIT, sort_by=SortBy.DOWNLOADS) -> 
 
 def suggest() -> List[str]:
     """Reads and returns suggested models from a file."""
-    try:
-        with files(PACKAGE_PATH).joinpath(SUGGESTED_MODELS_FILE).open() as file:
-            lines = file.readlines()
-            return [line.strip() for line in lines]
-    except (FileNotFoundError, IOError):
-        print(f"An error occurred while reading the file at path {SUGGESTED_MODELS_FILE}.")
-        return []
+    return read_packaged_file(SUGGESTED_MODELS_FILE)
 
 
 def scan() -> List[str]:
@@ -49,7 +50,6 @@ def scan() -> List[str]:
         hf_cache_info = scan_cache_dir()
         return [model.repo_id for model in hf_cache_info.repos]
     except CacheNotFound as e:
-        print(f"An error occurred while scanning the cache: {e}")
         return []
 
 
