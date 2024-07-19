@@ -10,16 +10,16 @@ LOGIN_HELP_FILE = "login_help.txt"
 
 
 class Action(Enum):
-    LOGIN = ("login", None, "Add Hugging Face access token", False)
-    START = ("start", None, "Start Interactive Mode", False)
-    SCAN = ("scan", None, "Scan for downloaded MLX models")
+    LOGIN = ("login", "", "Add Hugging Face access token", False)
+    START = ("start", "", "Start Interactive Mode", False)
+    SCAN = ("scan", "", "Scan for downloaded MLX models")
     SEARCH = ("search", "phrase", "Search for MLX models using a search phrase")
-    SUGGEST = ("suggest", None, "Suggest MLX models to download")
+    SUGGEST = ("suggest", "", "Suggest MLX models to download")
     DOWNLOAD = ("download", "repo_id", "Download a specific model")
     DELETE = ("delete", "repo_id", "Delete a specific model")
-    EXIT = ("exit", None, "Exit Interactive Mode")
-    HELP = ("help", None, "Show this help message")
-    INVALID = ("invalid", None, "Invalid action", False)
+    EXIT = ("exit", "", "Exit Interactive Mode")
+    HELP = ("help", "", "Show this help message")
+    INVALID = ("invalid", "", "Invalid action", False)
 
     def __new__(cls, value: str, parameter: str, description: str, is_interactive: bool = True):
         obj = object.__new__(cls)
