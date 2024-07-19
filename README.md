@@ -1,19 +1,14 @@
-Sure, here's the updated README.md with the detailed information about the commands included in the interactive mode:
-
-### README.md
-
-```markdown
 <h1 align="center">MLX Hub</h1>
 
-<p align="center">
+<p>
     Framework: Python<br>
     Platform: macOS<br>
-    Hardware: Apple Silicon<br>
+    Hardware: Apple Silicon Devices<br>
 </p>
 
 MLX-Hub is a tool for downloading and managing [MLX](https://github.com/ml-explore/mlx) models from [Hugging Face Hub](https://huggingface.co) on [Apple Silicon Devices](https://support.apple.com/en-us/116943). 
 It provides a command line interface (CLI) and a Python library to make it easy to search, download, and manage models without leaving your development environment. 
-The built-in CLI tool called `mlx-hub-cli` accepts command line arguments and can also run in [Interactive Mode](#interactive-mode), directly from the terminal.
+The built-in CLI tool called 'mlx-hub-cli' accepts command line arguments and can also run in [Interactive Mode](#interactive-mode), directly from the terminal.
 
 ## Features
 
@@ -105,6 +100,12 @@ Goodbye!
 ### Scan
 
 The `scan` action scans the Hugging Face cache directory and lists all the MLX models that are currently downloaded on your device.
+
+Example:
+
+```bash
+mlx-hub-cli --search bert
+```
 
 ### Search
 
