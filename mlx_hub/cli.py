@@ -127,7 +127,7 @@ def start_interactive_mode():
     running = True
     while running:
         # Get user input
-        user_input = input("Enter Action > ").strip().split()
+        user_input = input("Enter Action > ").strip().split(sep=" ", maxsplit=1)
         if not user_input:
             continue
 

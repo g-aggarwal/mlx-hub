@@ -58,7 +58,7 @@ options:
 
 ### Interactive Mode
 
-MLX-Hub CLI provides an interactive mode that allows you to execute various [Action](#Actions) in a user-friendly environment.
+Interactive mode allows you to execute various [Action](#Actions) in a user-friendly environment.
 
 To start the interactive mode, use the `start` action:
 
@@ -88,12 +88,12 @@ Enter Action > exit
 Goodbye!
 ```
 
-In interactive mode, you can enter the following available actions:
+In interactive mode, the following actions are available:
 
 - `help`: Show the help message with available actions.
 - `scan`: Scan for downloaded MLX models.
 - `suggest`: Suggest MLX models to download.
-- `search <term>`: Search for MLX models using a search term.
+- `search <phrase>`: Search for MLX models using a search phrase.
 - `download <model_id>`: Download a specific model.
 - `delete <model_id>`: Delete a specific model.
 - `exit`: Exit the interactive mode.
@@ -120,13 +120,58 @@ mlx-hub-cli --search bert
 
 ### Search
 
-The `search` action searches for MLX models on the Hugging Face Hub using a specified search term.
+The `search` action searches for MLX models on the Hugging Face Hub using a specified search phrase. 
+The search phrase should be substrings that will be contained in the model id of the model.
 
 Example:
 
 ```bash
-mlx-hub-cli --search bert
+> mlx-hub-cli --search bert
+
+3 models found:
+mlx-community/bert-base-uncased-mlx
+mlx-community/bert-large-uncased-mlx
+mlx-community/bert-base-multilingual-uncased
 ```
+
+Use quotes around the search phrase if it contains multiple substrings
+
+```bash
+ mlx-hub-cli --search "whisper v2"
+
+3 models found:
+mlx-community/whisper-large-v2-mlx
+mlx-community/whisper-large-v2-mlx-8bit
+mlx-community/whisper-large-v2-mlx-4bit
+```
+
+In Interactive Mode, you don't need the quotes
+
+```bash
+ mlx-hub-cli --start              
+
+Starting interactive mode.
+
+Available Actions:
+    scan                  Scan for downloaded models in the Hugging Face cache
+    search     phrase     Search for MLX models using a search phrase
+    suggest               Suggest MLX models to download
+    download   repo_id    Download a specific model
+    delete     repo_id    Delete a specific model
+    exit                  Exit Interactive Mode
+    help                  Show this help message
+
+Enter Action > search whisper v2
+
+3 models found:
+mlx-community/whisper-large-v2-mlx
+mlx-community/whisper-large-v2-mlx-8bit
+mlx-community/whisper-large-v2-mlx-4bit
+
+Enter Action >  
+
+```
+
 
 ### Suggest
 
