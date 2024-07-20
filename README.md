@@ -1,33 +1,54 @@
 <h1 align="center">MLX Hub</h1>
 
-<p>
-    Framework: Python<br>
-    Platform: macOS<br>
-    Hardware: Apple Silicon Devices<br>
-</p>
+|               |                       |
+|---------------|-----------------------|
+| **Framework** | Python                |
+| **Platform**  | macOS                 |
+| **Hardware**  | Apple Silicon Devices |
+|               |                       | 
 
 MLX-Hub is a tool for downloading and managing [MLX](https://github.com/ml-explore/mlx) models from [Hugging Face Hub](https://huggingface.co) on [Apple Silicon Devices](https://support.apple.com/en-us/116943). 
-It provides a command line interface (CLI) and a Python library to make it easy to search, download, and manage models without leaving your development environment. 
-The built-in CLI tool called 'mlx-hub-cli' accepts command line arguments and can also run in [Interactive Mode](#interactive-mode), directly from the terminal.
+It provides a command line interface (CLI) and a Python library to make it easy to search, download, and manage [MLX models](https://huggingface.co/models?library=mlx&sort=downloads) without leaving your development environment. 
+The `mlx_hub` python package has a built-in CLI tool called 'mlx-hub-cli', that not only accepts command line arguments but also supports an [Interactive Mode](#interactive-mode), directly from the terminal.
 
 ## Features
 
-- [Scan](#scan) for MLX Models on your device
-- [Search](#search) for MLX Models from Hugging Face Hub 
-- [Suggest](#suggest) MLX models to download
-- [Download](#download) MLX models by repository ID
-- [Delete](#delete) MLX models as needed
-- An [Interactive Mode](#interactive-mode) to run the tool like an application 
+- [Scan](#scan) for Models downloaded on your device, in the Hugging Face Hub cache.
+- [Search](#search) for MLX Models from Hugging Face Hub.
+- [Suggest](#suggest) MLX models to download.
+- [Download](#download) MLX models by repository ID.
+- [Delete](#delete) MLX models as needed.
+- [Interactive Mode](#interactive-mode) for a better interface.
 
 ## Installation
 
-You can install MLX-Hub using pip. To install the CLI and Python library, run:
+You can install MLX-Hub using pip:
 
 ```bash
 pip install mlx-hub
 ```
+This should install the mlx-hub python package from pyPI, including the `mlx-hub-cli` and its dependencies.
 
-## Command line arguments
+### Hugging Face: User Access Token
+
+MLX-Hub uses [huggingface_hub](https://github.com/huggingface/huggingface_hub) to interact with MLX models on Hugging Face.
+Please create and add an access token from Hugging Face to huggingface_hub to proceed.
+
+Hugging Face Hub documentation:
+> https://huggingface.co/docs/hub/security-tokens
+
+To create an access token, go to you Hugging Face settings:
+> https://huggingface.co/settings/tokens
+
+To add the access token to `huggingface_hub`:
+> huggingface-cli login
+
+
+## Quick start
+
+### Command line arguments
+
+MLX-Hub CLI accept the following command line argument:
 
 ```bash
 > mlx-hub-cli --help 
@@ -42,19 +63,19 @@ options:
   --delete repo_id    Delete a specific model
 ```
 
-## Interactive Mode
+### Interactive Mode
 
-MLX-Hub provides an interactive mode that allows you to execute various commands in a user-friendly environment.
+MLX-Hub CLI provides an interactive mode that allows you to execute various [Action](#Actions) in a user-friendly environment.
 
-To start the interactive mode, use the following command:
+To start the interactive mode, use the `start` action:
 
 ```bash
 mlx-hub-cli --start
 ```
 
-In interactive mode, you will be prompted to enter commands. The available commands are:
+In interactive mode, you can enter the following available actions:
 
-- `help`: Show the help message with available commands.
+- `help`: Show the help message with available actions.
 - `scan`: Scan for downloaded MLX models.
 - `suggest`: Suggest MLX models to download.
 - `search <term>`: Search for MLX models using a search term.
@@ -62,7 +83,7 @@ In interactive mode, you will be prompted to enter commands. The available comma
 - `delete <model_id>`: Delete a specific model.
 - `exit`: Exit the interactive mode.
 
-To exit the interactive mode, simply type `exit` and press Enter:
+To exit the interactive mode, use the `exit` action:
 
 ```bash
 Enter Action > exit
@@ -77,7 +98,7 @@ Goodbye!
 Starting interactive mode.
 
 Available Actions:
-    scan                  Scan for downloaded MLX models
+    scan                  Scan for downloaded models in the Hugging Face cache
     search     phrase     Search for MLX models using a search phrase
     suggest               Suggest MLX models to download
     download   repo_id    Download a specific model

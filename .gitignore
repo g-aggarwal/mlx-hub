@@ -1,8 +1,7 @@
 # .gitignore
-*.pic
 __pycache__/
-.env
 env/
+venv/
 .idea/
 build/
 *.egg-info/

@@ -1,8 +1,8 @@
 # Copyright (c) 2024 Gaurav Aggarwal
 
 import argparse
-import mlx_hub.core
-import mlx_hub.mlx_hub_utils as utils
+import mlx_hub.core as mlx_hub
+import mlx_hub.utils as utils
 
 from enum import Enum
 
@@ -12,7 +12,7 @@ LOGIN_HELP_FILE = "login_help.txt"
 class Action(Enum):
     LOGIN = ("login", "", "Add Hugging Face access token", False)
     START = ("start", "", "Start Interactive Mode", False)
-    SCAN = ("scan", "", "Scan for downloaded MLX models")
+    SCAN = ("scan", "", "Scan for downloaded models in the Hugging Face cache")
     SEARCH = ("search", "phrase", "Search for MLX models using a search phrase")
     SUGGEST = ("suggest", "", "Suggest MLX models to download")
     DOWNLOAD = ("download", "repo_id", "Download a specific model")
