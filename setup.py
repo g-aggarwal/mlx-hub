@@ -1,8 +1,19 @@
 from setuptools import setup, find_packages
 
+
+def get_version() -> str:
+    rel_path = "mlx_hub/__init__.py"
+    with open(rel_path, "r") as fp:
+        for line in fp.read().splitlines():
+            if line.startswith("__version__"):
+                separator = '"' if '"' in line else "'"
+                return line.split(separator)[1]
+    raise RuntimeError("Unable to find version string.")
+
+
 setup(
     name='mlx-hub',
-    version='1.0.0',
+    version=get_version(),
     python_requires='>=3.6',
     packages=find_packages(),
     include_package_data=True,

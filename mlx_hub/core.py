@@ -4,7 +4,7 @@ from enum import Enum
 from typing import List
 from huggingface_hub import HfApi, get_token, scan_cache_dir, snapshot_download, CacheNotFound
 from huggingface_hub.errors import LocalTokenNotFoundError
-import mlx_hub.mlx_hub_utils as utils
+import mlx_hub.utils as utils
 
 SUGGESTED_MODELS_FILE = 'suggested_models.txt'
 
@@ -71,7 +71,7 @@ def delete(repo_id: str) -> bool:
     for repo in hf_cache_info.repos:
         if repo_id == repo.repo_id:
             try:
-                for revision in sorted(repo.revisions, key=lambda revision: revision.commit_hash):
+                for revision in sorted(repo.revisions, key=lambda rev: rev.commit_hash):
                     strategy = hf_cache_info.delete_revisions(revision.commit_hash)
                     strategy.execute()
                 return True
