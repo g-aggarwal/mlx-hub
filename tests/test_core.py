@@ -16,19 +16,19 @@ class TestMLXHub(unittest.TestCase):
         self.assertIsNotNone(result)
         self.assertEqual(len(result), mlx_hub.SEARCH_LIMIT)
 
-        for repo_id in result:
-            self.assertIsNotNone(repo_id)
-            self.assertGreater(len(repo_id), 0)
-            self.assertEqual(len(repo_id.split("/")), 2)
+        for model_id in result:
+            self.assertIsNotNone(model_id)
+            self.assertGreater(len(model_id), 0)
+            self.assertEqual(len(model_id.split("/")), 2)
 
         result = mlx_hub.search(TEST_SEARCH_PHRASE_FEW_RESULTS)
         self.assertIsNotNone(result)
         self.assertLess(len(result), mlx_hub.SEARCH_LIMIT)
 
-        for repo_id in result:
-            self.assertIsNotNone(repo_id)
-            self.assertGreater(len(repo_id), 0)
-            self.assertEqual(len(repo_id.split("/")), 2)
+        for model_id in result:
+            self.assertIsNotNone(model_id)
+            self.assertGreater(len(model_id), 0)
+            self.assertEqual(len(model_id.split("/")), 2)
 
         result = mlx_hub.search(TEST_SEARCH_PHRASE_NO_RESULTS)
         self.assertIsNotNone(result)
@@ -43,10 +43,10 @@ class TestMLXHub(unittest.TestCase):
         self.assertIsNotNone(result)
         self.assertGreaterEqual(len(result), 0)
 
-        for repo_id in result:
-            self.assertIsNotNone(repo_id)
-            self.assertGreater(len(repo_id), 0)
-            self.assertEqual(len(repo_id.split("/")), 2)
+        for model_id in result:
+            self.assertIsNotNone(model_id)
+            self.assertGreater(len(model_id), 0)
+            self.assertEqual(len(model_id.split("/")), 2)
 
     def test_scan(self):
         result = mlx_hub.scan()
@@ -59,10 +59,10 @@ class TestMLXHub(unittest.TestCase):
             result = mlx_hub.scan()
             self.assertIn(TEST_MODEL, result)
 
-        for repo_id in result:
-            self.assertIsNotNone(repo_id)
-            self.assertGreater(len(repo_id), 0)
-            self.assertEqual(len(repo_id.split("/")), 2)
+        for model_id in result:
+            self.assertIsNotNone(model_id)
+            self.assertGreater(len(model_id), 0)
+            self.assertEqual(len(model_id.split("/")), 2)
 
     def test_download(self):
         scan_result_before_download = mlx_hub.scan()

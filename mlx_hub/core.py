@@ -21,18 +21,18 @@ class SortBy(Enum):
 
 
 def has_token() -> bool:
-    """Checks if there is a Hugging Face token."""
+    """Checks if there is an active Hugging Face token."""
     try:
         return get_token() is not None
     except LocalTokenNotFoundError:
         return False
 
 
-def search(search_term, search_limit=SEARCH_LIMIT, sort_by=SortBy.DOWNLOADS) -> List[str]:
-    """Searches for model repositories using a string that contain complete or partial names for models on the Hub."""
+def search(search_phrase, search_limit=SEARCH_LIMIT, sort_by=SortBy.DOWNLOADS) -> List[str]:
+    """Searches for models using a string that contain complete or partial names on the Hub."""
     hf_api = HfApi()
     models = hf_api.list_models(
-        search=search_term,
+        search=search_phrase,
         library=SEARCH_LIBRARY,
         sort=sort_by.value,
         full=SEARCH_FULL,
@@ -47,7 +47,7 @@ def suggest() -> List[str]:
 
 
 def scan() -> List[str]:
-    """Scans the Hugging Face cache directory and returns a list of repositories."""
+    """Scans the Hugging Face cache directory and returns a list of Models."""
     try:
         hf_cache_info = scan_cache_dir()
         return [model.repo_id for model in hf_cache_info.repos]
@@ -55,27 +55,26 @@ def scan() -> List[str]:
         return []
 
 
-def download(repo_id: str) -> bool:
-    """Downloads a repository snapshot by its ID."""
+def download(model_id: str) -> bool:
+    """Downloads a model snapshot by its ID."""
     try:
-        repo_path = snapshot_download(repo_id)
-        return bool(repo_path)
+        return bool(snapshot_download(model_id))
     except Exception as e:
-        print(f"An error occurred while downloading the repository {repo_id}: {e}")
+        print(f"An error occurred while downloading the model {model_id}: {e}")
         return False
 
 
-def delete(repo_id: str) -> bool:
-    """Deletes a repository by its ID."""
+def delete(model_id: str) -> bool:
+    """Deletes a model from the Hugging Face cache by its ID."""
     hf_cache_info = scan_cache_dir()
     for repo in hf_cache_info.repos:
-        if repo_id == repo.repo_id:
+        if model_id == repo.repo_id:
             try:
                 for revision in sorted(repo.revisions, key=lambda rev: rev.commit_hash):
                     strategy = hf_cache_info.delete_revisions(revision.commit_hash)
                     strategy.execute()
                 return True
             except Exception as e:
-                print(f"An error occurred while deleting the repository {repo_id}: {e}")
+                print(f"An error occurred while deleting the model {model_id}: {e}")
                 return False
     return False

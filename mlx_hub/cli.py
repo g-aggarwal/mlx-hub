@@ -15,8 +15,8 @@ class Action(Enum):
     SCAN = ("scan", "", "Scan for downloaded models in the Hugging Face cache")
     SEARCH = ("search", "phrase", "Search for MLX models using a search phrase")
     SUGGEST = ("suggest", "", "Suggest MLX models to download")
-    DOWNLOAD = ("download", "repo_id", "Download a specific model")
-    DELETE = ("delete", "repo_id", "Delete a specific model")
+    DOWNLOAD = ("download", "model_id", "Download a specific model")
+    DELETE = ("delete", "model_id", "Delete a specific model")
     EXIT = ("exit", "", "Exit Interactive Mode")
     HELP = ("help", "", "Show this help message")
     INVALID = ("invalid", "", "Invalid action", False)
@@ -53,12 +53,12 @@ def execute_action(action, parameter=None):
     print()
 
     if action == Action.SCAN:
-        repo_list = mlx_hub.scan()
-        if len(repo_list) == 0:
+        model_list = mlx_hub.scan()
+        if len(model_list) == 0:
             print("No downloaded models found.")
         else:
-            print(f"{len(repo_list)} downloaded models: ")
-        print_string_list(repo_list)
+            print(f"{len(model_list)} downloaded models: ")
+        print_string_list(model_list)
 
     elif action == Action.SEARCH:
         if parameter:
@@ -86,7 +86,7 @@ def execute_action(action, parameter=None):
             else:
                 print("Model not found.")
         else:
-            print("Please provide a Repo ID.")
+            print("Please provide a Model ID.")
 
     elif action == Action.DELETE:
         if parameter:
@@ -96,7 +96,7 @@ def execute_action(action, parameter=None):
             else:
                 print("Model not found.")
         else:
-            print("Please provide a Repo ID.")
+            print("Please provide a Model ID.")
 
     elif action == Action.START:
         print("Starting interactive mode.")
