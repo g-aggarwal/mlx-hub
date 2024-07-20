@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 
 def get_version() -> str:
-    rel_path = "src/mlx_hub/__init__.py"
+    rel_path = "mlx_hub/__init__.py"
     with open(rel_path, "r") as fp:
         for line in fp.read().splitlines():
             if line.startswith("__version__"):
@@ -12,8 +12,8 @@ def get_version() -> str:
 
 
 setup(
-    name='mlx_hub',
-    version='get_version()',
+    name='mlx-hub',
+    version=get_version(),
     python_requires='>=3.6',
     packages=find_packages(),
     include_package_data=True,

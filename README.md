@@ -1,12 +1,5 @@
 <h1 align="center">MLX Hub</h1>
 
-|               |                       |
-|---------------|-----------------------|
-| **Framework** | Python                |
-| **Platform**  | macOS                 |
-| **Hardware**  | Apple Silicon Devices |
-|               |                       | 
-
 MLX-Hub is a tool for downloading and managing [MLX](https://github.com/ml-explore/mlx) models from [Hugging Face Hub](https://huggingface.co) on [Apple Silicon Devices](https://support.apple.com/en-us/116943). 
 It provides a command line interface (CLI) and a Python library to make it easy to search, download, and manage [MLX models](https://huggingface.co/models?library=mlx&sort=downloads) without leaving your development environment. 
 The `mlx_hub` python package has a built-in CLI tool called 'mlx-hub-cli', that not only accepts command line arguments but also supports an [Interactive Mode](#interactive-mode), directly from the terminal.
@@ -27,12 +20,12 @@ You can install MLX-Hub using pip:
 ```bash
 pip install mlx-hub
 ```
-This should install the mlx-hub python package from pyPI, including the `mlx-hub-cli` and its dependencies.
+This should install the `mlx-hub` python package from pyPI, including `mlx-hub-cli` and all dependencies.
 
 ### Hugging Face: User Access Token
 
 MLX-Hub uses [huggingface_hub](https://github.com/huggingface/huggingface_hub) to interact with MLX models on Hugging Face.
-Please create and add an access token from Hugging Face to huggingface_hub to proceed.
+Please create and add an access token from Hugging Face to huggingface_hub, if it's not already setup.
 
 Hugging Face Hub documentation:
 > https://huggingface.co/docs/hub/security-tokens
@@ -48,7 +41,7 @@ To add the access token to `huggingface_hub`:
 
 ### Command line arguments
 
-MLX-Hub CLI accept the following command line argument:
+MLX-Hub CLI accepts the following command line argument:
 
 ```bash
 > mlx-hub-cli --help 
@@ -73,28 +66,7 @@ To start the interactive mode, use the `start` action:
 mlx-hub-cli --start
 ```
 
-In interactive mode, you can enter the following available actions:
-
-- `help`: Show the help message with available actions.
-- `scan`: Scan for downloaded MLX models.
-- `suggest`: Suggest MLX models to download.
-- `search <term>`: Search for MLX models using a search term.
-- `download <model_id>`: Download a specific model.
-- `delete <model_id>`: Delete a specific model.
-- `exit`: Exit the interactive mode.
-
-To exit the interactive mode, use the `exit` action:
-
 ```bash
-Enter Action > exit
-Goodbye!
-```
-
-### Example
-
-```bash
-> mlx-hub-cli --start    
-
 Starting interactive mode.
 
 Available Actions:
@@ -111,6 +83,24 @@ Enter Action > scan
 1 downloaded models: 
 mlx-community/TinyDolphin-2.8-1.1b-4bit-mlx
 
+Enter Action > exit
+
+Goodbye!
+```
+
+In interactive mode, you can enter the following available actions:
+
+- `help`: Show the help message with available actions.
+- `scan`: Scan for downloaded MLX models.
+- `suggest`: Suggest MLX models to download.
+- `search <term>`: Search for MLX models using a search term.
+- `download <model_id>`: Download a specific model.
+- `delete <model_id>`: Delete a specific model.
+- `exit`: Exit the interactive mode.
+
+To exit the interactive mode, use the `exit` action:
+
+```bash
 Enter Action > exit
 
 Goodbye!
