@@ -9,7 +9,7 @@ The `mlx_hub` python package has a built-in CLI tool called 'mlx-hub-cli', that 
 - [Scan](#scan) for Models downloaded on your device, in the Hugging Face Hub cache.
 - [Search](#search) for MLX Models from Hugging Face Hub.
 - [Suggest](#suggest) MLX models to download.
-- [Download](#download) MLX models by repository ID.
+- [Download](#download) MLX models by model ID.
 - [Delete](#delete) MLX models as needed.
 - [Interactive Mode](#interactive-mode) for a better interface.
 
@@ -44,16 +44,18 @@ To add the access token to `huggingface_hub`:
 MLX-Hub CLI accepts the following command line argument:
 
 ```bash
-> mlx-hub-cli --help 
+usage: mlx-hub-cli [-h] [--start] [--scan] [--search phrase] [--suggest] [--download model_id] [--delete model_id]
+
+MLX-Hub CLI
 
 options:
-  -h, --help          Show this help message
-  --start             Start Interactive Mode
-  --scan              Scan for downloaded MLX models
-  --search phrase     Search for MLX models using a search phrase
-  --suggest           Suggest MLX models to download
-  --download repo_id  Download a specific model
-  --delete repo_id    Delete a specific model
+  -h, --help           show this help message and exit
+  --start              Start Interactive Mode
+  --scan               Scan for downloaded models in the Hugging Face cache
+  --search phrase      Search for MLX models using a search phrase
+  --suggest            Suggest MLX models to download
+  --download model_id  Download a specific model
+  --delete model_id    Delete a specific model
 ```
 
 ### Interactive Mode
@@ -73,8 +75,8 @@ Available Actions:
     scan                  Scan for downloaded models in the Hugging Face cache
     search     phrase     Search for MLX models using a search phrase
     suggest               Suggest MLX models to download
-    download   repo_id    Download a specific model
-    delete     repo_id    Delete a specific model
+    download   model_id   Download a specific model
+    delete     model_id   Delete a specific model
     exit                  Exit Interactive Mode
     help                  Show this help message
 
@@ -156,8 +158,8 @@ Available Actions:
     scan                  Scan for downloaded models in the Hugging Face cache
     search     phrase     Search for MLX models using a search phrase
     suggest               Suggest MLX models to download
-    download   repo_id    Download a specific model
-    delete     repo_id    Delete a specific model
+    download   model_id   Download a specific model
+    delete     model_id   Delete a specific model
     exit                  Exit Interactive Mode
     help                  Show this help message
 
@@ -179,7 +181,7 @@ The `suggest` action suggests MLX models to download. It reads from a predefined
 
 ### Download
 
-The `download` action downloads a specific MLX model by its repository ID.
+The `download` action downloads a specific MLX model by its model ID.
 
 Example:
 
@@ -189,7 +191,7 @@ mlx-hub-cli --download mlx-community/bert-base-uncased-mlx
 
 ### Delete
 
-The `delete` action deletes a specific MLX model by its repository ID.
+The `delete` action deletes a specific MLX model by its model ID.
 
 Example:
 
