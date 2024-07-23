@@ -3,13 +3,13 @@
 from importlib.resources import files
 from typing import List
 
-PACKAGE_PATH = 'mlx_hub'
+PACKAGE_DATA_PATH = 'src.mlx_hub.data'
 
 
 def read_packaged_file(file_name: str) -> List[str]:
-    """Reads and returns suggested models from a file."""
+    """Reads and returns text from packaged file."""
     try:
-        with files(PACKAGE_PATH).joinpath(file_name).open() as file_name:
+        with files(PACKAGE_DATA_PATH).joinpath(file_name).open() as file_name:
             lines = file_name.readlines()
             return [line.strip() for line in lines]
     except (FileNotFoundError, IOError):
@@ -18,6 +18,6 @@ def read_packaged_file(file_name: str) -> List[str]:
 
 
 def print_packaged_file(file_name: str):
-    """Prints suggested models from a file."""
+    """Prints text from packaged file."""
     for line in read_packaged_file(file_name):
         print(line)
