@@ -31,7 +31,7 @@ class Action(Enum):
         return obj
 
 
-def print_action_login():
+def print_action_login_help():
     utils.print_packaged_file(LOGIN_HELP_FILE)
 
 
@@ -55,9 +55,9 @@ def execute_action(action, parameter=None):
     if action == Action.SCAN:
         model_list = mlx_hub.scan()
         if len(model_list) == 0:
-            print("No downloaded models found.")
+            print("No models found!")
         else:
-            print(f"{len(model_list)} downloaded models: ")
+            print(f"{len(model_list)} models found: ")
         print_string_list(model_list)
 
     elif action == Action.SEARCH:
@@ -65,7 +65,7 @@ def execute_action(action, parameter=None):
             models_list = mlx_hub.search(parameter)
             count = len(models_list)
             if count == 0:
-                print("No models found.")
+                print("No models found!")
             elif count == mlx_hub.SEARCH_LIMIT:
                 print(f"Showing top {mlx_hub.SEARCH_LIMIT} results:")
             else:
@@ -108,13 +108,13 @@ def execute_action(action, parameter=None):
         return False
 
     elif action == Action.LOGIN:
-        print_action_login()
+        print_action_login_help()
 
     elif action == Action.HELP:
         print_action_help()
 
     else:
-        print("Invalid action.")
+        print("Invalid action!\n")
         print_action_help()
 
     print()

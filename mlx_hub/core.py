@@ -10,7 +10,7 @@ SUGGESTED_MODELS_FILE = 'suggested_models.txt'
 
 SEARCH_LIBRARY = 'mlx'
 SEARCH_FULL = False
-SEARCH_LIMIT = 10
+SEARCH_LIMIT = 25
 
 
 class SortBy(Enum):
