@@ -1,7 +1,7 @@
 <h1 align="center">MLX Hub</h1>
 
-MLX-Hub is a tool for downloading and managing [MLX](https://github.com/ml-explore/mlx) models from [Hugging Face Hub](https://huggingface.co) on [Apple Silicon Devices](https://support.apple.com/en-us/116943). 
-It provides a command line interface (CLI) and a Python library to make it easy to search, download, and manage [MLX models](https://huggingface.co/models?library=mlx&sort=downloads) without leaving your development environment. 
+MLX-Hub is a tool for downloading and managing [MLX](https://github.com/ml-explore/mlx) AI models from [Hugging Face Hub](https://huggingface.co) on [Apple Silicon Devices](https://support.apple.com/en-us/116943). 
+The python package provides a command line interface (CLI) and a Python library to conveniently search, download, and manage [MLX models](https://huggingface.co/models?library=mlx&sort=downloads) without leaving your development environment. 
 The `mlx_hub` python package has a built-in CLI tool called 'mlx-hub-cli', that not only accepts command line arguments but also supports an [Interactive Mode](#interactive-mode), directly from the terminal.
 
 ## Features
@@ -25,7 +25,7 @@ This should install the `mlx-hub` python package from pyPI, including `mlx-hub-c
 ### Hugging Face: User Access Token
 
 MLX-Hub uses [huggingface_hub](https://github.com/huggingface/huggingface_hub) to interact with MLX models on Hugging Face.
-Please create and add an access token from Hugging Face to huggingface_hub, if it's not already setup.
+Please create and add an access token from Hugging Face to huggingface_hub.
 
 Hugging Face Hub documentation:
 > https://huggingface.co/docs/hub/security-tokens
@@ -35,7 +35,6 @@ To create an access token, go to you Hugging Face settings:
 
 To add the access token to `huggingface_hub`:
 > huggingface-cli login
-
 
 ## Quick start
 
@@ -169,11 +168,7 @@ Enter Action > search whisper v2
 mlx-community/whisper-large-v2-mlx
 mlx-community/whisper-large-v2-mlx-8bit
 mlx-community/whisper-large-v2-mlx-4bit
-
-Enter Action >  
-
 ```
-
 
 ### Suggest
 
@@ -199,3 +194,8 @@ Example:
 mlx-hub-cli --delete mlx-community/bert-base-uncased-mlx
 ```
 
+### Acknowledgements
+Thanks to:
+- The @apple machine learning research team @ml-explore for [MLX](https://github.com/ml-explore/mlx) 
+- The @huggingface Team for [huggingface_hub](https://github.com/huggingface/huggingface_hub)
+- The [MLX Community](https://huggingface.co/mlx-community) on Hugging Face
