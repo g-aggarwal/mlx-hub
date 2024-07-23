@@ -4,7 +4,7 @@ from enum import Enum
 from typing import List
 from huggingface_hub import HfApi, get_token, scan_cache_dir, snapshot_download, CacheNotFound
 from huggingface_hub.errors import LocalTokenNotFoundError
-import mlx_hub.utils as utils
+import src.mlx_hub.utils as utils
 
 SUGGESTED_MODELS_FILE = 'suggested_models.txt'
 

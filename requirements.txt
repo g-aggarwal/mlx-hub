@@ -1,1 +1,2 @@
+# Project dependencies
 huggingface-hub>=0.23.4,<1.0.0

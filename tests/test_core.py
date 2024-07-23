@@ -1,7 +1,8 @@
 # Copyright (c) 2024 Gaurav Aggarwal
 
 import unittest
-import mlx_hub
+
+from src import mlx_hub
 
 TEST_MODEL = "mlx-community/TinyDolphin-2.8-1.1b-4bit-mlx"
 TEST_SEARCH_PHRASE_MANY_RESULTS = "llama"

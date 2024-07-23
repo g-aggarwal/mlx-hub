@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mlx-hub"
+dynamic = ["version"]
+description = "A command line tool for downloading and managing MLX models"
+readme = "README.md"
+requires-python = ">=3.6"
+license = {text = "MIT License"}
+authors = [
+    {name = "Gaurav Aggarwal", email = "gauravaggarwal@mail.com"},
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Mac OS X",
+]
+dependencies = [
+    "huggingface-hub>=0.23.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/g-aggarwal/mlx-hub"
+
+[project.scripts]
+mlx-hub-cli = "mlx_hub.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"mlx_hub" = ["data/*.txt"]
+
+[tool.setuptools.dynamic]
+version = {attr = "mlx_hub.__version__"}
