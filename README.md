@@ -196,6 +196,6 @@ mlx-hub-cli --delete mlx-community/bert-base-uncased-mlx
 
 ### Acknowledgements
 Thanks to:
-- The @apple machine learning research team @ml-explore for [MLX](https://github.com/ml-explore/mlx) 
-- The @huggingface Team for [huggingface_hub](https://github.com/huggingface/huggingface_hub)
+- Apple's machine learning research team @ml-explore for [MLX](https://github.com/ml-explore/mlx) 
+- The Hugging Face team @huggingface for [huggingface_hub](https://github.com/huggingface/huggingface_hub)
 - The [MLX Community](https://huggingface.co/mlx-community) on Hugging Face
