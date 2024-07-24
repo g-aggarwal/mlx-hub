@@ -1,8 +1,8 @@
 # Copyright (c) 2024 Gaurav Aggarwal
 
 import argparse
-import src.mlx_hub.core as mlx_hub
-import src.mlx_hub.utils as utils
+import mlx_hub.core as mlx_hub
+import mlx_hub.utils as utils
 
 from enum import Enum
 

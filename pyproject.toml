@@ -15,7 +15,7 @@ authors = [
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
-    "Operating System :: Mac OS X",
+    "Operating System :: MacOS :: MacOS X",
 ]
 dependencies = [
     "huggingface-hub>=0.23.4",

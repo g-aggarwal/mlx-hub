@@ -1,7 +1,9 @@
 # .gitignore
 __pycache__/
-env/
 venv/
+venv_deploy/
 .idea/
 build/
-*.egg-info/
+dist/
+src/*.egg-info/
+
