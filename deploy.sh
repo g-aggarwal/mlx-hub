@@ -1,11 +1,33 @@
+#!/bin/bash
+
+deployment_environment="test"
+venv_dir="venv_deploy"
+repo="testpypi"  # Default repository is TestPyPI
+
+# Check if the script is being sourced
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    echo "Error: This script should be sourced, not executed."
+    echo "Usage: source ${BASH_SOURCE[0]}"
+    exit 1
+fi
+
+echo "Sourcing the script..."
+
+# Function to check command success
+check_command() {
+    if [ $? -ne 0 ]; then
+        echo "Error: $1 failed"
+        exit 1
+    fi
+}
+
 # Determine the repository based on the argument
 if [ -n "$1" ] && [ "$1" = "--prod" ]; then
     deployment_environment="prod"
     repo="pypi"
 else
+    deployment_environment="test"
     repo="testpypi"
-
-
 fi
 
 echo "Environment: $deployment_environment"
