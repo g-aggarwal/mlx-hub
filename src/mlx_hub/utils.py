@@ -3,7 +3,7 @@
 from importlib.resources import files
 from typing import List
 
-PACKAGE_DATA_PATH = 'src.mlx_hub.data'
+PACKAGE_DATA_PATH = 'mlx_hub.data'
 
 
 def read_packaged_file(file_name: str) -> List[str]:
