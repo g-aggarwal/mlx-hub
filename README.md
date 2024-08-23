@@ -1,8 +1,10 @@
 <h1 align="center">MLX Hub</h1>
 
-MLX-Hub is a command line tool for managing [MLX](https://opensource.apple.com/projects/mlx/) AI models on macOS. 
+MLX-Hub is an open-sourced command line app for managing [MLX](https://opensource.apple.com/projects/mlx/) AI models on Macs with [Apple silicon](https://support.apple.com/en-us/116943). 
 
-Search and download [MLX models](https://huggingface.co/models?library=mlx&sort=downloads) from Hugging Face, right from your terminal. 
+Search, download & manage [MLX models](https://huggingface.co/models?library=mlx&sort=downloads) from Hugging Face, right from your terminal.
+
+The CLI accepts command line arguments and provides an app interface with `Interactive Mode`.
 
 ### What is MLX?
 
@@ -15,7 +17,7 @@ Search and download [MLX models](https://huggingface.co/models?library=mlx&sort=
 - [Suggest](#suggest) MLX models to download.
 - [Download](#download) MLX models by model ID.
 - [Delete](#delete) MLX models as needed.
-- [Interactive Mode](#interactive-mode) for an app like interface.
+- [Interactive Mode](#interactive-mode) for an better UX.
 
 ## Installation
 
@@ -206,6 +208,6 @@ mlx-hub-cli --delete mlx-community/bert-base-uncased-mlx
 
 ### Acknowledgements
 Thanks to:
-- Apple's machine learning research team @ml-explore for [MLX](https://github.com/ml-explore/mlx) 
-- The Hugging Face team @huggingface for [huggingface_hub](https://github.com/huggingface/huggingface_hub)
+- Apple's machine learning research team for [MLX](https://github.com/ml-explore/mlx) 
+- The Hugging Face team for [huggingface_hub](https://github.com/huggingface/huggingface_hub)
 - The [MLX Community](https://huggingface.co/mlx-community)
