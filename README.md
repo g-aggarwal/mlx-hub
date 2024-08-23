@@ -2,21 +2,15 @@
 
 MLX-Hub is a command line tool for managing [MLX](https://opensource.apple.com/projects/mlx/) AI models  on macOS. 
 
-Conveniently search for and download [MLX models](https://huggingface.co/models?library=mlx&sort=downloads) from Hugging Face, without leaving your development environment. 
+Search and download [MLX models](https://huggingface.co/models?library=mlx&sort=downloads) from Hugging Face, without leaving your dev environment. 
 
 ### What is MLX?
 
 [MLX](https://github.com/ml-explore/mlx) is a model training and serving framework for Apple silicon, made by [Machine Learning Research](https://machinelearning.apple.com/) at Apple.
 
-## Components
-
-`mlx-hub-cli` - CLI Tool
-
-`mlx_hub`     - Python Module
-
 ## Features
 
-- [Scan](#scan) for Models downloaded on your device, from your local Hugging Face Hub cache.
+- [Scan](#scan) for downloaded Models in your local Hugging Face cache.
 - [Search](#search) for MLX Models from Hugging Face Hub.
 - [Suggest](#suggest) MLX models to download.
 - [Download](#download) MLX models by model ID.
@@ -25,11 +19,18 @@ Conveniently search for and download [MLX models](https://huggingface.co/models?
 
 ## Installation
 
-Install [`mlx-hub`](https://pypi.org/project/mlx-hub/)  from PyPI:
+Install [`mlx-hub`](https://pypi.org/project/mlx-hub/)  from PyPI using pip:
 
 ```bash
 pip install mlx-hub
 ```
+
+## Components
+
+- `mlx-hub-cli` : CLI Tool
+
+- `mlx_hub`     : Python Module
+
 
 ### Hugging Face: User Access Token
 
