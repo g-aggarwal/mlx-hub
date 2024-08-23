@@ -1,6 +1,6 @@
 <h1 align="center">MLX Hub</h1>
 
-MLX-Hub is an open-sourced command line app for managing [MLX](https://opensource.apple.com/projects/mlx/) AI models on Macs with [Apple silicon](https://support.apple.com/en-us/116943). 
+MLX-Hub is an open-sourced command line tool for managing [MLX](https://opensource.apple.com/projects/mlx/) AI models on Macs with [Apple silicon](https://support.apple.com/en-us/116943). 
 
 Search, download & manage [MLX models](https://huggingface.co/models?library=mlx&sort=downloads) from Hugging Face, right from your terminal.
 
