@@ -1,26 +1,32 @@
 <h1 align="center">MLX Hub</h1>
 
-MLX-Hub is a tool for downloading and managing [MLX](https://github.com/ml-explore/mlx) AI models from [Hugging Face Hub](https://huggingface.co) on [Apple Silicon Devices](https://support.apple.com/en-us/116943). 
-The python package provides a command line interface (CLI) and a Python library to conveniently search, download, and manage [MLX models](https://huggingface.co/models?library=mlx&sort=downloads) without leaving your development environment. 
-The `mlx_hub` python package has a built-in CLI tool called 'mlx-hub-cli', that not only accepts command line arguments but also supports an [Interactive Mode](#interactive-mode), directly from the terminal.
+MLX-Hub is a command line tool for managing [MLX](https://opensource.apple.com/projects/mlx/) AI models  on macOS. Conveniently search and download [MLX models](https://huggingface.co/models?library=mlx&sort=downloads) from [Hugging Face](https://huggingface.co) from your terminal. 
+
+### What is MLX?
+
+[MLX](https://github.com/ml-explore/mlx) is a model training and serving framework for [Apple silicon](https://support.apple.com/en-us/116943) made by [Apple Machine Learning Research](https://machinelearning.apple.com/).
+
+## Components
+
+`mlx-hub-cli` : CLI Tool 
+`mlx_hub`     : Python module
 
 ## Features
 
-- [Scan](#scan) for Models downloaded on your device, in the Hugging Face Hub cache.
+- [Scan](#scan) for Models downloaded on your device, from your local Hugging Face Hub cache.
 - [Search](#search) for MLX Models from Hugging Face Hub.
 - [Suggest](#suggest) MLX models to download.
 - [Download](#download) MLX models by model ID.
 - [Delete](#delete) MLX models as needed.
-- [Interactive Mode](#interactive-mode) for a better interface.
+- [Interactive Mode](#interactive-mode) for an app like interface.
 
 ## Installation
 
-You can install MLX-Hub using pip:
+You can install [`mlx-hub`](https://pypi.org/project/mlx-hub/)  from PyPI:
 
 ```bash
 pip install mlx-hub
 ```
-This should install the `mlx-hub` python package from pyPI, including `mlx-hub-cli` and all dependencies.
 
 ### Hugging Face: User Access Token
 
@@ -198,4 +204,4 @@ mlx-hub-cli --delete mlx-community/bert-base-uncased-mlx
 Thanks to:
 - Apple's machine learning research team @ml-explore for [MLX](https://github.com/ml-explore/mlx) 
 - The Hugging Face team @huggingface for [huggingface_hub](https://github.com/huggingface/huggingface_hub)
-- The [MLX Community](https://huggingface.co/mlx-community) on Hugging Face
+- The [MLX Community](https://huggingface.co/mlx-community)
