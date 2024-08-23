@@ -2,7 +2,7 @@
 
 MLX-Hub is a command line tool for managing [MLX](https://opensource.apple.com/projects/mlx/) AI models  on macOS. 
 
-Search and download [MLX models](https://huggingface.co/models?library=mlx&sort=downloads) from Hugging Face, without leaving your dev environment. 
+Search, scan and download [MLX models](https://huggingface.co/models?library=mlx&sort=downloads) from Hugging Face, right from your terminal. 
 
 ### What is MLX?
 
