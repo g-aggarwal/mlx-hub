@@ -19,6 +19,9 @@ The CLI accepts command line arguments and provides an app interface with `Inter
 - [Delete](#delete) MLX models as needed.
 - [Interactive Mode](#interactive-mode) for an better UX.
 
+## Documentation
+[MLX Hub - v1.0.0](https://gaurav-aggarwal.com/mlx-hub/)
+
 ## Installation
 
 Install [`mlx-hub`](https://pypi.org/project/mlx-hub/)  from PyPI using pip:
@@ -119,94 +122,7 @@ Enter Action > exit
 Goodbye!
 ```
 
-## Actions
-
-### Scan
-
-The `scan` action scans the Hugging Face cache directory and lists all the MLX models that are currently downloaded on your device.
-
-Example:
-
-```bash
-mlx-hub-cli --search bert
-```
-
-### Search
-
-The `search` action searches for MLX models on the Hugging Face Hub using a specified search phrase. 
-The search phrase should be substrings that will be contained in the model id of the model.
-
-Example:
-
-```bash
-> mlx-hub-cli --search bert
-
-3 models found:
-mlx-community/bert-base-uncased-mlx
-mlx-community/bert-large-uncased-mlx
-mlx-community/bert-base-multilingual-uncased
-```
-
-Use quotes around the search phrase if it contains multiple substrings
-
-```bash
- mlx-hub-cli --search "whisper v2"
-
-3 models found:
-mlx-community/whisper-large-v2-mlx
-mlx-community/whisper-large-v2-mlx-8bit
-mlx-community/whisper-large-v2-mlx-4bit
-```
-
-In Interactive Mode, you don't need the quotes
-
-```bash
- mlx-hub-cli --start              
-
-Starting interactive mode.
-
-Available Actions:
-    scan                  Scan for downloaded models in the Hugging Face cache
-    search     phrase     Search for MLX models using a search phrase
-    suggest               Suggest MLX models to download
-    download   model_id   Download a specific model
-    delete     model_id   Delete a specific model
-    exit                  Exit Interactive Mode
-    help                  Show this help message
-
-Enter Action > search whisper v2
-
-3 models found:
-mlx-community/whisper-large-v2-mlx
-mlx-community/whisper-large-v2-mlx-8bit
-mlx-community/whisper-large-v2-mlx-4bit
-```
-
-### Suggest
-
-The `suggest` action suggests MLX models to download. It reads from a predefined list of suggested models.
-
-### Download
-
-The `download` action downloads a specific MLX model by its model ID.
-
-Example:
-
-```bash
-mlx-hub-cli --download mlx-community/bert-base-uncased-mlx
-```
-
-### Delete
-
-The `delete` action deletes a specific MLX model by its model ID.
-
-Example:
-
-```bash
-mlx-hub-cli --delete mlx-community/bert-base-uncased-mlx
-```
-
-### Acknowledgements
+## Acknowledgements
 Thanks to:
 - Apple's machine learning research team for [MLX](https://github.com/ml-explore/mlx) 
 - The Hugging Face team for [huggingface_hub](https://github.com/huggingface/huggingface_hub)
